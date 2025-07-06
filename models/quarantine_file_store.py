@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class QuarantineFileStore(ABC):
     
     @abstractmethod
-    def generate_presigned_upload_url_minio(self) -> str:
+    async def get_put_url(self) -> str:
         """Stores the object in MinIO"""
         pass
     

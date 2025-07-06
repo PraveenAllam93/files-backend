@@ -40,3 +40,6 @@ class ImageFileCheckException(BaseCustomException):
 
 class PDFFileCHeckException(BaseCustomException):
     pass
+
+class QuarantineFileStoreException(BaseCustomException):
+    pass

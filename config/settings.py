@@ -28,8 +28,9 @@ class Settings(BaseSettings):
     MAX_MEGAPIXELS: int = 25
     BYTES_PER_PIXEL: float = 0.05
     
-    MAX_UPLOAD_SIZE: int = 15
-    MAX_FILE_SIZE: int = 15
+    MAX_UPLOAD_SIZE: int = 15 # in MB
+    MAX_FILE_SIZE: int = 10  # in MB
+    MAX_FILES_COUNT: int = 10
     IMAGE_EXTENSIONS: List[str] = ["jpg", "jpeg", "png"]
     PDF_EXTENSIONS: List[str] = ["pdf"]
     SOURCE_CODE_EXTENSIONS: List[str] = ['cpp', 'cc', 'cxx', 'h', 'go', 'java', 'kt', 'kts', 'js', 'mjs', 'cjs', 'ts', 'tsx', 'php', 'phtml', 'php3', 'php4', 'php5', 'phps', 'proto', 'py', 'pyw', 'rst', 'rb', 'rhtml', 'rs', 'scala', 'swift', 'md', 'markdown', 'tex', 'ltx', 'cls', 'sty', 'html', 'htm', 'xhtml', 'sol', 'cs', 'cob', 'cbl', 'cpy', 'c', 'h', 'lua', 'pl', 'pm', 't', 'hs', 'lhs', 'ex', 'exs', 'ps1', 'psm1', 'psd1', 'txt']

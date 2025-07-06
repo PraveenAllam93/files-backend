@@ -10,6 +10,9 @@ from config.redis_config import pool
 import time
 from routers import router_modules
 
+from logs import setup_logging
+
+setup_logging()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
