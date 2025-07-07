@@ -10,7 +10,7 @@ from exceptions import MinIOException, QuarantineFileStoreException
 
 from .minio_service import generate_presigned_upload_url_minio
 from fastapi.concurrency import run_in_threadpool
-from typing import List
+from typing import List, Tuple
 import asyncio
 
 class QuarantineFileStoreService(QuarantineFileStore):
@@ -20,7 +20,7 @@ class QuarantineFileStoreService(QuarantineFileStore):
         self.userid = userid
         self.expires = timedelta(minutes=expires)
         
-    async def get_put_url(self) -> str:
+    async def get_put_url(self) -> Tuple[List[str], List[str]]:
         if not self.filenames or not self.userid:
             raise QuarantineFileStoreException("Filenames and User ID must be provided")
         
@@ -39,10 +39,12 @@ class QuarantineFileStoreService(QuarantineFileStore):
             )
         
         try:
-            urls = await asyncio.gather(
+            urls_info = await asyncio.gather(
                 *[generate_presigned_upload_urls(file) for file in self.filenames]
             )
-            return urls
+            urls = [info[0] for info in urls_info]
+            object_paths = [info[1] for info in urls_info]
+            return urls, object_paths
         except MinIOException as e:
             raise e
         except Exception as e:

@@ -16,7 +16,7 @@ def generate_presigned_upload_url_minio(filename: str, userid: str, expires: int
             expires=expires
         )
         app_logger.info(f"Presigned upload URL generated for user: {userid}, filename: {filename}")
-        return url
+        return url, f"{userid}/{filename}"
     except Exception as e:
         error_logger.error(f"Failed to generate presigned upload URL for user: {userid}, filename: {filename} => {str(e)}")
         raise MinIOException("Failed to generate presigned **UPLOAD URL** for MinIO", e)

@@ -14,6 +14,9 @@ class Settings(BaseSettings):
 
     BACKEND_CORS_ORIGINS: List[str] = ["*"]
 
+    TINES_WEBHOOK_URL: str = os.getenv("TINES_WEBHOOK_URL", "")
+    TINES_SECRET: str = os.getenv("TINES_SECRET", "")
+
     MINIO_ACCESS_KEY: str = os.getenv("MINIO_ACCESS_KEY")
     MINIO_SECRET_KEY: str = os.getenv("MINIO_SECRET_KEY")
     MINIO_ENDPOINT: str = os.getenv("MINIO_ENDPOINT")
